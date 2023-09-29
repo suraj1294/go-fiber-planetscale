@@ -1,34 +1,23 @@
 package db
 
 import (
-	"log"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"github.com/joho/godotenv"
 )
 
 var localUrl = ""
 
 func NewDatabaseConnection() *sqlx.DB {
 
-	dsn := os.Getenv("GIN_MODE")
+	dsn := os.Getenv("DSN")
 
-	if dsn != "release" {
-		err := godotenv.Load()
-		if err != nil {
-			log.Fatal("failed to load env", err)
-		}
+	if dsn == "" {
+		dsn = localUrl
 	}
 
-	dbUrl := os.Getenv("DSN")
-
-	if dbUrl == "" {
-		dbUrl = localUrl
-	}
-
-	Db, err := sqlx.Connect("mysql", dbUrl)
+	Db, err := sqlx.Connect("mysql", dsn)
 
 	if err != nil {
 		panic(err)

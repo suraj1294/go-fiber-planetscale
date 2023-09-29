@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/joho/godotenv"
 	"github.com/suraj1294/go-fiber-planetscale/handler"
 )
 
@@ -24,6 +26,15 @@ type Employee struct {
 var defaultPort = "8080"
 
 func main() {
+
+	mode := os.Getenv("GIN_MODE")
+
+	if mode != "release" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("failed to load env", err)
+		}
+	}
 
 	port := os.Getenv("PORT")
 
