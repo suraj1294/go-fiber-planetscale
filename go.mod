@@ -13,7 +13,7 @@ require go.uber.org/multierr v1.10.0 // indirect
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/doug-martin/goqu/v9 v9.18.0
-	github.com/gofiber/fiber/v2 v2.49.2 // indirect
+	github.com/gofiber/fiber/v2 v2.49.2
 	github.com/google/uuid v1.3.1 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
