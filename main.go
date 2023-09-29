@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -20,8 +21,15 @@ type Employee struct {
 	Address Address
 }
 
+var defaultPort = "8080"
+
 func main() {
-	fmt.Println("hello")
+
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = defaultPort
+	}
 
 	app := fiber.New()
 
@@ -35,5 +43,5 @@ func main() {
 	app.Put("/products/:id", ph.UpdateProduct)
 	app.Delete("/products/:id", ph.DeleteProduct)
 
-	app.Listen(":8080")
+	app.Listen(fmt.Sprintf(":%s", port))
 }
