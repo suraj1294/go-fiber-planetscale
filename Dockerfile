@@ -1,5 +1,5 @@
 # Use an official Golang runtime as a parent image
-FROM golang:latest as dev
+FROM golang:bullseye as dev
 
 # Set the working directory to /app
 WORKDIR /app
